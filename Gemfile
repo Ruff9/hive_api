@@ -14,3 +14,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 6.1.0'
   gem 'dotenv'
 end
+
+group :test do
+  gem 'shoulda-matchers', '~> 6.0'
+end

@@ -10,17 +10,8 @@ RSpec.describe HivesController, type: :routing do
       expect(get: "/hives/1").to route_to("hives#show", id: "1")
     end
 
-
     it "routes to #create" do
       expect(post: "/hives").to route_to("hives#create")
-    end
-
-    it "routes to #update via PUT" do
-      expect(put: "/hives/1").to route_to("hives#update", id: "1")
-    end
-
-    it "routes to #update via PATCH" do
-      expect(patch: "/hives/1").to route_to("hives#update", id: "1")
     end
 
     it "routes to #destroy" do

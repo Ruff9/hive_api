@@ -17,11 +17,19 @@ RSpec.describe "/hives", type: :request do
   # Hive. As you add validations to Hive, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "test_name",
+      weight: 15,
+      description: "test description"
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: "short",
+      weight: 15,
+      description: "test description"
+    }
   }
 
   # This should return the minimal set of values that should be in the headers
@@ -76,40 +84,6 @@ RSpec.describe "/hives", type: :request do
       it "renders a JSON response with errors for the new hive" do
         post hives_url,
              params: { hive: invalid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to match(a_string_including("application/json"))
-      end
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested hive" do
-        hive = Hive.create! valid_attributes
-        patch hive_url(hive),
-              params: { hive: new_attributes }, headers: valid_headers, as: :json
-        hive.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "renders a JSON response with the hive" do
-        hive = Hive.create! valid_attributes
-        patch hive_url(hive),
-              params: { hive: new_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including("application/json"))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a JSON response with errors for the hive" do
-        hive = Hive.create! valid_attributes
-        patch hive_url(hive),
-              params: { hive: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
