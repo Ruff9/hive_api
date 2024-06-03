@@ -1,24 +1,45 @@
-# README
+# Hive API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+API déployée sur Scalingo : [https://hive-api.osc-fr1.scalingo.io](https://hive-api.osc-fr1.scalingo.io)
 
-Things you may want to cover:
+Le front est déployé sur Github pages : [https://ruff9.github.io/hive_front/](https://ruff9.github.io/hive_front/)
 
-* Ruby version
+et le code du front est disponible ici : [https://github.com/Ruff9/hive_front](https://github.com/Ruff9/hive_front)
 
-* System dependencies
+## Setup développement local
 
-* Configuration
+1. Installer les dépendances
 
-* Database creation
+```
+$ bundle install
+```
+2. Mettre en place les variables d'environnement
 
-* Database initialization
+Créer un fichier `.env` à la racine du projet en reproduisant le fichier `.env.sample`.
+Préciser le nom de l'utilisateur et le mot de passe qui seront utilisés pour la base de données locale.
 
-* How to run the test suite
+3. Setup base de données locale
 
-* Services (job queues, cache servers, search engines, etc.)
+Example avec `psql`
 
-* Deployment instructions
+```
+$ sudo -u postgres psql
+```
+puis
 
-* ...
+```
+create role name_of_db_user with createdb login password 'password_of_db_user';
+```
+En reprenant les valeurs du fichier `.env`
+
+4. Création de la base de données
+
+```
+$ rake db:setup
+```
+
+5. Vérification
+
+```
+$ rspec --format documentation
+```

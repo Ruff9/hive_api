@@ -1,5 +1,5 @@
 class HivesController < ApplicationController
-  before_action :set_hive, only: %i[ show update destroy ]
+  before_action :set_hive, only: %i[ show destroy ]
 
   # GET /hives
   def index
@@ -19,15 +19,6 @@ class HivesController < ApplicationController
 
     if @hive.save
       render json: @hive, status: :created, location: @hive
-    else
-      render json: @hive.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /hives/1
-  def update
-    if @hive.update(hive_params)
-      render json: @hive
     else
       render json: @hive.errors, status: :unprocessable_entity
     end
